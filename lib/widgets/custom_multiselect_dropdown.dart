@@ -3,14 +3,15 @@ import 'package:multiselect/multiselect.dart';
 
 class CustomMultiSelectDropdown extends StatefulWidget {
   CustomMultiSelectDropdown(
-      {Key? key, required this.label, required this.selectedValues, required this.dropdownList, this.isRadioInputType, required this.handleOnChange})
+      {Key? key, required this.label, required this.selectedValues, required this.dropdownList, this.isRadioInputType, required this.handleOnChange, required this.errorText})
       : super(key: key);
 
   String label;
   List<String> selectedValues;
   List<String> dropdownList;
-  final Function(List<String>) handleOnChange;
+  Function(List<String>) handleOnChange;
   bool? isRadioInputType;
+  String? errorText;
 
   @override
   State<CustomMultiSelectDropdown> createState() => _CustomMultiSelectDropdownState();
@@ -36,11 +37,11 @@ class _CustomMultiSelectDropdownState extends State<CustomMultiSelectDropdown> {
                   options: widget.dropdownList,
                   selectedValues: widget.selectedValues,
                   onChanged: (values) => widget.handleOnChange(values),
-                  decoration: const InputDecoration(
-                    border: OutlineInputBorder(),
-                    focusedBorder: OutlineInputBorder(),
-                    enabledBorder: OutlineInputBorder(),
-                    // /contentPadding: EdgeInsets.symmetric(horizontal: 20)
+                  decoration: InputDecoration(
+                    border: const OutlineInputBorder(),
+                    focusedBorder: const OutlineInputBorder(),
+                    enabledBorder: const OutlineInputBorder(),
+                    errorText: widget.errorText,
                   ),
                 ),
         )
